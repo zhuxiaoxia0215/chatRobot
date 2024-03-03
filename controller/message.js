@@ -1,6 +1,7 @@
-const {formatXml} = require('../utils/format')
+const {formatXml} = require('../utils/format');
+const customerService = require('../controller/customerService');
 
-function messageController(req, res, next) {
+async function messageController(req, res, next) {
     //接受微信端发来的信息
     const message = formatXml(req.body.xml);
     console.log(message);
@@ -16,6 +17,9 @@ function messageController(req, res, next) {
         createTime,
         content
     })
+
+    //等待客服消息回复
+    await customerService(fromusername);
 }
 
 module.exports = messageController;
