@@ -1,9 +1,8 @@
-const {generateToken} = require('./accessToken');
+const {getAccessToken} = require('./accessToken');
 const axios = require('axios');
 
 async function customerServiceController(openid) {
-    const result = await generateToken();
-    const {access_token} = result.data;
+    const access_token = await getAccessToken();
     const url = `https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token= ${access_token}`;
     await axios.post(url, {
         touser: openid,
