@@ -20,7 +20,6 @@ async function generateToken() {
 async function getAccessToken() {
     //读取文件中的关于access_token 相关信息
     const json = fs.readFileSync('./data/access_token.json', 'utf8');
-    console.log(json)
     const {access_token, create_time} = JSON.parse(json || "{}");
     const now = new Date().getTime();
     if (access_token && now - create_time <= 7000 * 1000) {

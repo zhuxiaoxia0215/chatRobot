@@ -43,7 +43,7 @@ const menu = {
 async function createMenu(req, res, next,) {
     const token = await getAccessToken()
     const url = `https://api.weixin.qq.com/cgi-bin/menu/create?access_token=${token}`;
-    axios.post(url, menu);
+    await axios.post(url, menu);
     res.send('菜单创建成功');
 }
 
