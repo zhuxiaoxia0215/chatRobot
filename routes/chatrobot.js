@@ -1,5 +1,8 @@
 var express = require('express');
 var router = express.Router();
+
+require('../db')
+
 const checkSignature = require('../controller/checkSignature');
 const message = require('../controller/message');
 const menuController = require("../controller/menu")

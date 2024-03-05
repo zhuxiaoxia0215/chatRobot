@@ -9,6 +9,7 @@ async function switchController(req, res, next) {
             await message(req, res, next);
             break;
         case "event":
+            //处理用户菜单模式切换
             switch (reqBody.eventkey) {
                 case "model_human":
                     res.render('reply', {
@@ -26,6 +27,21 @@ async function switchController(req, res, next) {
                     break;
                 default:
                     break;
+            }
+            //处理用户关注和取消关注的动作
+            switch (reqBody.event) {
+                case 'subscribe':
+                    res.render('reply', {
+                        ...reqBody,
+                        createTime: new Date().getTime(),
+                        content: '感谢关注'
+                    })
+                    break;
+                case 'subscribe':
+                    break;
+                default:
+                    break;
+
             }
         default:
             break;
