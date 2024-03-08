@@ -1,5 +1,6 @@
 const {formatXml} = require('../utils/format');
 const customerService = require('../controller/customerService');
+const {deductBalance} = require('../model/user')
 
 async function messageController(req, res, next) {
     //接受微信端发来的信息
@@ -17,6 +18,9 @@ async function messageController(req, res, next) {
         createTime,
         content
     })
+
+    //用户账户金额扣除
+    await deductBalance(fromusername);
 
     //等待客服消息回复
     await customerService(fromusername);
