@@ -1,7 +1,7 @@
 const {getAccessToken} = require('./accessToken');
 const axios = require('axios');
 
-async function customerServiceController(openid) {
+async function customerServiceController(openid, content) {
     const access_token = await getAccessToken();
     console.log(access_token);
     const url = `https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token= ${access_token}`;
@@ -9,7 +9,7 @@ async function customerServiceController(openid) {
         touser: openid,
         msgtype: 'text',
         text: {
-            content: '来源于ChatGPT的回答。'
+            content
         }
     })
 }

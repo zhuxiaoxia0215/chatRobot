@@ -4,10 +4,11 @@
 const {userModel} = require('../db/schema')
 
 // 插入一条用户记录
-function createUser(wxOpenId) {
-    userModel.insertMany({
+async function createUser(wxOpenId) {
+    const result = userModel.insertMany({
         wxOpenId
-    })
+    });
+    return result;
 }
 
 // 查询用户信息
@@ -27,6 +28,17 @@ async function deductBalance(wxOpenId) {
     await userModel.findOneAndUpdate({wxOpenId}, {$inc: {balance: -1}})
 }
 
+//切换模式
+async function changeModel(wxOpenId, model) {
+    await userModel.findOneAndUpdate({wxOpenId}, {model});
+}
+
+//账户充值
+async function recharge(wxOpenId, amount) {
+    await userModel.findOneAndUpdate({wxOpenId}, {$inc: {balance: amount}});
+}
+
+
 module.exports = {
-    createUser, findUser, getBalance, deductBalance
+    createUser, findUser, getBalance, deductBalance, changeModel, recharge
 }

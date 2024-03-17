@@ -1,8 +1,8 @@
 const axios = require('axios');
 const fs = require('fs');
 
-const APPID = 'wx994b88c3debfe07b';
-const APPSECRET = 'ed12ff988d1c3a8996fe3a203d29552a';
+const APPID = '';
+const APPSECRET = '';
 
 async function generateToken() {
     // access_token请求接口GET https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET

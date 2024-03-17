@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
     },
     model: {
         type: String,
-        default: 'chatgpt'
+        default: 'human'
     }
 });
 
